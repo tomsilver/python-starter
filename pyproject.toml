@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_starter"
+version = "0.1.0"
+description = "A basic starter for Python packages."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+   "matplotlib",
+   "numpy",
+]
+
+[project.optional-dependencies]
+develop = [
+    "black",
+    "docformatter",
+    "isort",
+    "mypy",
+    "pylint>=2.14.5",
+    "pytest-pylint>=0.18.0",
+    "pytest>=7.2.2",
+]
+
+[tool.setuptools.packages.find]
+exclude = ["tests*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.isort]
+py_version = 39
+profile = "black"
+multi_line_output = 2
+skip_glob = ["venv/*"]
+split_on_trailing_comma = true
+
+[tool.mypy]
+strict_equality = true
+disallow_untyped_calls = true
+warn_unreachable = true
+exclude = ["venv/*"]
+follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = [
+    "matplotlib.*",
+]
+ignore_missing_imports = true
