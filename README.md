@@ -1,4 +1,4 @@
-# Python Starter
+# python-starter
 
 ![workflow](https://github.com/tomsilver/python-starter/actions/workflows/ci.yml/badge.svg)
 
