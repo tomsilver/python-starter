@@ -1,6 +1,6 @@
 # Python Starter
 
-![workflow](https://github.com/tomsilver/python_starter/actions/workflows/ci.yml/badge.svg)
+![workflow](https://github.com/tomsilver/python-starter/actions/workflows/ci.yml/badge.svg)
 
 A basic starter for Python packages with GitHub continuous integration.
 
