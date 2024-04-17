@@ -25,7 +25,10 @@ develop = [
 ]
 
 [tool.setuptools.packages.find]
-exclude = ["tests*"]
+where = ["src"]
+
+[tool.setuptools.package-data]
+python_starter = ["py.typed"]
 
 [tool.black]
 line-length = 88
