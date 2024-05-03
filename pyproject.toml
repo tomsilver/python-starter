@@ -7,7 +7,7 @@ name = "python_starter"
 version = "0.1.0"
 description = "A basic starter for Python packages."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
    "matplotlib",
    "numpy",
@@ -32,10 +32,10 @@ python_starter = ["py.typed"]
 
 [tool.black]
 line-length = 88
-target-version = ["py39"]
+target-version = ["py10"]
 
 [tool.isort]
-py_version = 39
+py_version = 310
 profile = "black"
 multi_line_output = 2
 skip_glob = ["venv/*"]
