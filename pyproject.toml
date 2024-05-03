@@ -32,7 +32,7 @@ python_starter = ["py.typed"]
 
 [tool.black]
 line-length = 88
-target-version = ["py10"]
+target-version = ["py310"]
 
 [tool.isort]
 py_version = 310
