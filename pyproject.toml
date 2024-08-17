@@ -46,7 +46,6 @@ strict_equality = true
 disallow_untyped_calls = true
 warn_unreachable = true
 exclude = ["venv/*"]
-follow_imports = "skip"
 
 [[tool.mypy.overrides]]
 module = [
