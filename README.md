@@ -38,17 +38,17 @@ A basic template for building Python packages.
     - Check "Require branches to be up to date before merging".
     - Then type in `autoformat`, `static-type-checking`, `linting`, `unit-tests`.
     - Check "Do not allow bypassing the above settings".
-9. **Set up repository settings** in `https://github.com/$MYGITUSER$/$MYREPO/settings`:
+9. **Set up repository settings** in `https://github.com/<USER>/<NAME>/settings`:
     - Check "Allow auto-merge".
     - Check "Automatically delete head branches".
     - Uncheck "Allow merge commits".
     - Uncheck "Allow rebase merging".
-10. **Set up contributor settings** to lower the barrier for external contributions. In `https://github.com/$MYGITUSER$/$MYREPO/settings/actions`:
+10. **Set up contributor settings** to lower the barrier for external contributions. In `https://github.com/<USER>/<NAME>/settings/actions`:
     - Update "Fork pull request workflows from outside collaborators" to "Require approval for first-time contributors who are new to GitHub".
 
 
 ## Notes
 - Continuous integration with GitHub Actions only works if you have a public repository or an Enterprise account. You can still run checks locally with `./run_ci_checks.sh` regardless.
-- You can include your repository as a dependency if it's hosted on GitHub. For example, alongside requirements like `numpy` or `matplotlib` in a `pyproject.toml` or `requirements.txt` or `setup.py`, you can list `"YOUR-PACKAGE-NAME@git+https://github.com/YOUR-GITHUB-USERNAME/YOUR-REPO-NAME.git"`.
+- You can include your repository as a dependency if it's hosted on GitHub. For example, alongside requirements like `numpy` or `matplotlib` in a `pyproject.toml` or `requirements.txt` or `setup.py`, you can list `"<PACKAGE-NAME>@git+https://github.com/<USER>/<NAME>.git"`.
 - Feel free to open pull requests to improve this repository.
 - You can use this code and modify it in any way without any attributions or acknowledgements (see `LICENSE`).
