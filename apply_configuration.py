@@ -4,28 +4,28 @@ This file should be deleted after initial setup.
 """
 
 import json
+import os
 import shutil
 import subprocess
 from pathlib import Path
 
 
-def _git_replace(old: str, new: str) -> None:
-    subprocess.run(
-        [
-            "git",
-            "grep",
-            "-l",
-            f'"{old}"',
-            "|",
-            "xargs",
-            "sed",
-            "-i",
-            "''",
-            "-e",
-            f'"s/{old}/{new}/g"',
-        ],
-        check=True,
-    )
+def _replace_all_occurences(
+    old: str, new: str, directory: Path, exclude: set[Path] | None = None
+) -> None:
+    if exclude is None:
+        exclude = set()
+    for root, _, files in os.walk(directory):
+        for file_name in files:
+            file_path = Path(root) / file_name
+            if file_path in exclude:
+                continue
+            with file_path.open("r", encoding="utf-8") as fp:
+                file_contents = fp.read()
+            updated_contents = file_contents.replace(old, new)
+            if updated_contents != file_contents:
+                with file_path.open("w", encoding="utf-8") as file:
+                    file.write(updated_contents)
 
 
 def _main() -> None:
@@ -79,7 +79,7 @@ def _main() -> None:
         "310": f"3{python_subversion}",
     }
     for old, new in substitutions.items():
-        _git_replace(old, new)
+        _replace_all_occurences(old, new, Path(".").parent, exclude={Path(".")})
 
     # Rename the package repo.
     subprocess.run(["mv", "src/python_starter", f"src/{package_name}"], check=True)
