@@ -72,10 +72,7 @@ def _main() -> None:
         git_config_file = git_repo / "config"
         with open(git_config_file, "r", encoding="utf-8") as fp:
             git_config_contents = fp.read()
-        if (
-            "git@github.com:your-github-username/python-starter.git"
-            in git_config_contents
-        ):
+        if "git@github.com:tomsilver/python-starter.git" in git_config_contents:
             shutil.rmtree(git_repo)
 
     # Initialize the repo anew.
