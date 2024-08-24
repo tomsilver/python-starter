@@ -26,6 +26,8 @@ def _replace_all_occurences(
         known_files.add(outer_dir / line)
     known_files -= exclude
     for file_path in known_files:
+        if file_path.is_dir():
+            continue
         with file_path.open("r", encoding="utf-8") as fp:
             file_contents = fp.read()
         updated_contents = file_contents.replace(old, new)
