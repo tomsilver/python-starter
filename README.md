@@ -5,7 +5,7 @@
 A basic template for building Python packages.
 
 ## Features
-- Ready for **pip install** with `pip install -e .` (see `pyproject.toml`)
+- **Easy to install** with `pip install -e .` (see `pyproject.toml`)
 - **Continuous integration** with GitHub Actions (see `.github/workflows/ci.yml` and `run_ci_checks.sh`)
 - **Autoformatting** with black, isort, and docformatter (see `run_autoformat.sh`)
 - **Linting** with pytest-pylint (see `.pylintrc`)
@@ -18,11 +18,11 @@ A basic template for building Python packages.
 1. Go to https://github.com/new and follow the instructions on the first page. Do not do anything on the command line yet. Remember the NAME of the repository for the next step.
 
 ### Set Up the Code
-2. **Clone this repository** and give it the name of your repository: `git clone git@github.com:tomsilver/python-starter.git <NAME>`. You should now have a directory called NAME. Enter that directory: `cd <NAME>`.
+2. **Clone this repository** and give it the name of your repository: `git clone git@github.com:tomsilver/python-starter.git <NAME>`. You should now have a directory called NAME. **Enter** that directory: `cd <NAME>`.
 3. **Configure the repository:** make changes to `config.json` and then save.
 4. **Apply the configuration**: Run `python apply_configuration.py`.
 
-:tada: **That's it! Your code is ready to use** :tada:
+:tada: **That's it! Your code is ready to use** :tada: You should see your code back on GitHub where you previously had an empty repository.
 
 ### Common Next Steps
 5. **Make changes** to `pyproject.toml`, especially in the dependencies section.

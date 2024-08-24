@@ -76,7 +76,7 @@ def _main() -> None:
             shutil.rmtree(git_repo)
 
     # Initialize the repo anew.
-    subprocess.run(["git", "init"], check=True)
+    subprocess.run(["git", "init", "-b", "main"], check=True)
     subprocess.run(["git", "add", "."], check=True)
 
     # Replace all occurrences of default names.
@@ -107,7 +107,6 @@ def _main() -> None:
         ],
         check=True,
     )
-    subprocess.run(["git", "branch", "-M", "main"], check=True)
     subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
 
 
