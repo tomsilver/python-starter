@@ -95,7 +95,7 @@ def _main() -> None:
         _replace_all_occurences(old, new, exclude={Path("."), config_file})
 
     # Rename the package repo.
-    subprocess.run(["mv", "src/your_package_name", f"src/{package_name}"], check=True)
+    subprocess.run(["mv", "src/python_starter", f"src/{package_name}"], check=True)
 
     # Commit and push.
     subprocess.run(["git", "add", "."], check=True)
