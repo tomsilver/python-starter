@@ -15,11 +15,11 @@ A basic template for building Python packages.
 ## Instructions
 
 ### Create an Empty Repository on GitHub
-1. Go to https://github.com/new and follow the instructions on the first page. Do not do anything on the command line yet. Remember the NAME of the repository for the next step.
+1. Go to https://github.com/new and follow the instructions on the first page. No need to include a .gitignore, README, or LICENSE; these will be added later. After the first click, stop -- don't follow the command line instructions. Remember the NAME of the repository and then go on to step 2.
 
 ### Set Up the Code
 2. **Clone this repository** and give it the name of your repository: `git clone git@github.com:tomsilver/python-starter.git <NAME>`. You should now have a directory called NAME. **Enter** that directory: `cd <NAME>`.
-3. **Configure the repository:** make changes to `config.json` and then save.
+3. **Configure the repository:** Make changes to `config.json` and then save.
 4. **Apply the configuration**: Run `python apply_configuration.py`.
 
 :tada: **That's it! Your code is ready to use** :tada: You should see your code back on GitHub where you previously had an empty repository.
