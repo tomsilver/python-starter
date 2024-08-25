@@ -128,6 +128,9 @@ def _main() -> None:
     # Rename the package repo.
     subprocess.run(["mv", "src/python_starter", f"src/{package_name}"], check=True)
 
+    # Report succcess.
+    print("Configuration applied successfully.")
+
 
 if __name__ == "__main__":
     _main()
