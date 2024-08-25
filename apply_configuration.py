@@ -92,9 +92,6 @@ def _main() -> None:
     # This can happen if the user makes a mistake in their GitHub username.
     ret = subprocess.run(
         ["git", "remote", "get-url", "origin"],
-        shell=True,
-        text=True,
-        capture_output=True,
         check=False,
     )
     # Remote already exists, so set the URL.
