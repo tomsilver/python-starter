@@ -86,13 +86,14 @@ def _main() -> None:
 
     # Initialize the repo anew.
     subprocess.run(["git", "init", "-b", "main"], check=True, capture_output=True)
-    subprocess.run(["git", "add", "."], check=True)
+    subprocess.run(["git", "add", "."], check=True, capture_output=True)
 
     # Check if the remote already exists (if this script is being run twice).
     # This can happen if the user makes a mistake in their GitHub username.
     ret = subprocess.run(
         ["git", "remote", "get-url", "origin"],
         check=False,
+        capture_output=True,
     )
     # Remote already exists, so set the URL.
     if ret.returncode == 0:
@@ -126,7 +127,11 @@ def _main() -> None:
     )
 
     # Rename the package repo.
-    subprocess.run(["mv", "src/python_starter", f"src/{package_name}"], check=True)
+    subprocess.run(
+        ["mv", "src/python_starter", f"src/{package_name}"],
+        check=True,
+        capture_output=True,
+    )
 
     # Report succcess.
     print("Configuration applied successfully.")
