@@ -23,7 +23,7 @@ def _replace_all_occurences(
         ["git", "ls-files"], encoding="utf-8", stdout=subprocess.PIPE, check=True
     )
     for line in proc.stdout.split("\n"):
-        known_files.add(outer_dir / line)
+        known_files.add((outer_dir / line).resolve())
     known_files -= exclude
     for file_path in known_files:
         if file_path.is_dir():
@@ -38,7 +38,8 @@ def _replace_all_occurences(
 
 def _main() -> None:
     # Parse the config.
-    config_file = Path(".").parent / "config.json"
+    outer_dir = Path(".").parent.resolve()
+    config_file = outer_dir / "config.json"
     assert config_file.exists(), "Missing config file"
     with open(config_file, "r", encoding="utf-8") as fp:
         config = json.load(fp)
@@ -64,10 +65,10 @@ def _main() -> None:
     assert python_subversion.isdigit()
 
     # Get the repository name from this directory.
-    repo_name = Path(".").parent.resolve().name
+    repo_name = outer_dir.name
 
     # Delete the existing git files if they are from the starter repo.
-    git_repo = Path(".").parent / ".git"
+    git_repo = outer_dir / ".git"
     if git_repo.exists():
         git_config_file = git_repo / "config"
         with open(git_config_file, "r", encoding="utf-8") as fp:
@@ -78,6 +79,16 @@ def _main() -> None:
     # Initialize the repo anew.
     subprocess.run(["git", "init", "-b", "main"], check=True)
     subprocess.run(["git", "add", "."], check=True)
+    subprocess.run(
+        [
+            "git",
+            "remote",
+            "add",
+            "origin",
+            f"git@github.com:{github_username}/{repo_name}.git",
+        ],
+        check=True,
+    )
 
     # Replace all occurrences of default names.
     substitutions = {
@@ -89,25 +100,12 @@ def _main() -> None:
         "310": f"3{python_subversion}",
     }
     for old, new in substitutions.items():
-        _replace_all_occurences(old, new, exclude={Path("."), config_file})
+        _replace_all_occurences(
+            old, new, exclude={outer_dir / "apply_configuration.py", config_file}
+        )
 
     # Rename the package repo.
     subprocess.run(["mv", "src/python_starter", f"src/{package_name}"], check=True)
-
-    # Commit and push.
-    subprocess.run(["git", "add", "."], check=True)
-    subprocess.run(["git", "commit", "-m", "First commit"], check=True)
-    subprocess.run(
-        [
-            "git",
-            "remote",
-            "add",
-            "origin",
-            f"git@github.com:{github_username}/{repo_name}.git",
-        ],
-        check=True,
-    )
-    subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
 
 
 if __name__ == "__main__":

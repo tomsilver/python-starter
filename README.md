@@ -21,16 +21,17 @@ A basic template for building Python packages.
 2. **Clone this repository** and give it the name of your repository: `git clone git@github.com:tomsilver/python-starter.git <NAME>`. You should now have a directory called NAME. **Enter** that directory: `cd <NAME>`.
 3. **Configure the repository:** Make changes to `config.json` and then save.
 4. **Apply the configuration**: Run `python apply_configuration.py`.
+5. **Push your changes**: For example, run `git add . && git commit -m "First commit" && git push -u origin main`.
 
 :tada: **That's it! Your code is ready to use** :tada: You should see your code back on GitHub where you previously had an empty repository.
 
 ### Common Next Steps
-5. **Make changes** to `pyproject.toml`, especially in the dependencies section.
-6. **Install your repository**: `pip install -e .` (recommended: use a virtualenv).
-7. **Replace the starter files** (`README.md`, `LICENSE`, `config.json`, `apply_configuration.py`, `structs.py`, `utils.py` and the analogous files in `tests/`) with some of your own.
+6. **Make changes** to `pyproject.toml`, especially in the dependencies section.
+7. **Install your repository**: `pip install -e .` (recommended: use a virtualenv).
+8. **Replace the starter files** (`README.md`, `LICENSE`, `config.json`, `apply_configuration.py`, `structs.py`, `utils.py` and the analogous files in `tests/`) with some of your own.
 
 ### Configure GitHub (Optional but Recommended)
-8. **Set up branch protections** to prevent accidental changes to your main branch. In `https://github.com/<USER>/<NAME>/settings/branches`:
+9. **Set up branch protections** to prevent accidental changes to your main branch. In `https://github.com/<USER>/<NAME>/settings/branches`:
     - Click `Add classic branch protection rule`.
     - The branch pattern name is `main`.
     - Check "Require a pull request before merging (optionally: uncheck "Require approvals").
@@ -38,12 +39,12 @@ A basic template for building Python packages.
     - Check "Require branches to be up to date before merging".
     - Then type in `autoformat`, `static-type-checking`, `linting`, `unit-tests`.
     - Check "Do not allow bypassing the above settings".
-9. **Set up repository settings** in `https://github.com/<USER>/<NAME>/settings`:
+10. **Set up repository settings** in `https://github.com/<USER>/<NAME>/settings`:
     - Check "Allow auto-merge".
     - Check "Automatically delete head branches".
     - Uncheck "Allow merge commits".
     - Uncheck "Allow rebase merging".
-10. **Set up contributor settings** to lower the barrier for external contributions. In `https://github.com/<USER>/<NAME>/settings/actions`:
+11. **Set up contributor settings** to lower the barrier for external contributions. In `https://github.com/<USER>/<NAME>/settings/actions`:
     - Update "Fork pull request workflows from outside collaborators" to "Require approval for first-time contributors who are new to GitHub".
 
 
