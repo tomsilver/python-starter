@@ -85,13 +85,29 @@ def _main() -> None:
             shutil.rmtree(git_repo)
 
     # Initialize the repo anew.
-    subprocess.run(["git", "init", "-b", "main"], check=True)
+    subprocess.run(["git", "init", "-b", "main"], check=True, capture_output=True)
     subprocess.run(["git", "add", "."], check=True)
+
+    # Check if the remote already exists (if this script is being run twice).
+    # This can happen if the user makes a mistake in their GitHub username.
+    ret = subprocess.run(
+        ["git", "remote", "get-url", "origin"],
+        shell=True,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    # Remote already exists, so set the URL.
+    if ret.returncode == 0:
+        remote_command = "set-url"
+    # Remote doesn't exist, so add the URL.
+    else:
+        remote_command = "add"
     subprocess.run(
         [
             "git",
             "remote",
-            "add",
+            remote_command,
             "origin",
             f"git@github.com:{github_username}/{repo_name}.git",
         ],
