@@ -49,7 +49,7 @@ A basic template for building Python packages.
 
 
 ## Notes
-- Continuous integration with GitHub Actions only works if you have a public repository or an Enterprise account. You can still run checks locally with `./run_ci_checks.sh` regardless.
+- Branch protections only work if you have a public repository or an Enterprise account.
 - You can include your repository as a dependency if it's hosted on GitHub. For example, alongside requirements like `numpy` or `matplotlib` in a `pyproject.toml` or `requirements.txt` or `setup.py`, you can list `"<PACKAGE-NAME>@git+https://github.com/<USER>/<NAME>.git"`.
 - Feel free to open pull requests to improve this repository.
 - You can use this code and modify it in any way without any attributions or acknowledgements (see `LICENSE`).
