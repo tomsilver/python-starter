@@ -109,6 +109,7 @@ def _main() -> None:
             f"git@github.com:{github_username}/{repo_name}.git",
         ],
         check=True,
+        capture_output=True,
     )
 
     # Replace all occurrences of default names.
