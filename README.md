@@ -5,6 +5,7 @@
 A basic template for building Python packages.
 
 ## Features
+A package built from this starter code will have the following features:
 - **Easy to install** with `pip install -e .` (see `pyproject.toml`)
 - **Continuous integration** with GitHub Actions (see `.github/workflows/ci.yml` and `run_ci_checks.sh`)
 - **Autoformatting** with black, isort, and docformatter (see `run_autoformat.sh`)
