@@ -4,14 +4,22 @@ This file should be deleted after initial setup.
 """
 
 import json
+import re
 import shutil
 import subprocess
 from pathlib import Path
 
 
+def _multi_replace(substitutions: dict[str, str], text: str) -> str:
+    # Use re to replace everything in one pass, avoiding issues with the user's
+    # new values getting matched to my old values.
+    rep = dict((re.escape(k), v) for k, v in substitutions.items())
+    pattern = re.compile("|".join(rep.keys()))
+    return pattern.sub(lambda m: rep[re.escape(m.group(0))], text)
+
+
 def _replace_all_occurences(
-    old: str,
-    new: str,
+    substitutions: dict[str, str],
     exclude: set[Path] | None = None,
 ) -> None:
     if exclude is None:
@@ -30,7 +38,7 @@ def _replace_all_occurences(
             continue
         with file_path.open("r", encoding="utf-8") as fp:
             file_contents = fp.read()
-        updated_contents = file_contents.replace(old, new)
+        updated_contents = _multi_replace(substitutions, file_contents)
         if updated_contents != file_contents:
             with file_path.open("w", encoding="utf-8") as file:
                 file.write(updated_contents)
@@ -99,10 +107,9 @@ def _main() -> None:
         "3.10": f"3.{python_subversion}",
         "310": f"3{python_subversion}",
     }
-    for old, new in substitutions.items():
-        _replace_all_occurences(
-            old, new, exclude={outer_dir / "apply_configuration.py", config_file}
-        )
+    _replace_all_occurences(
+        substitutions, exclude={outer_dir / "apply_configuration.py", config_file}
+    )
 
     # Rename the package repo.
     subprocess.run(["mv", "src/python_starter", f"src/{package_name}"], check=True)
