@@ -6,7 +6,7 @@ A basic template for building Python packages.
 
 ## Features
 A package built from this starter code will have the following features:
-- **Easy to install** with `pip install -e .` (see `pyproject.toml`)
+- **Easy to install** with `pip install -e ".[develop]"` (see `pyproject.toml`)
 - **Continuous integration** with GitHub Actions (see `.github/workflows/ci.yml` and `run_ci_checks.sh`)
 - **Autoformatting** with black, isort, and docformatter (see `run_autoformat.sh`)
 - **Linting** with pytest-pylint (see `.pylintrc`)
@@ -28,7 +28,7 @@ A package built from this starter code will have the following features:
 
 ### Common Next Steps
 6. **Make changes** to `pyproject.toml`, especially in the dependencies section.
-7. **Install your repository**: `pip install -e .` (recommended: use a virtualenv).
+7. **Install your repository**: `pip install -e .".[develop]"` (recommended: use a virtualenv).
 8. **Replace the starter files** (`README.md`, `LICENSE`, `config.json`, `apply_configuration.py`, `structs.py`, `utils.py` and the analogous files in `tests/`) with some of your own.
 
 ### Configure GitHub (Optional but Recommended)
