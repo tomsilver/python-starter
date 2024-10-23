@@ -85,7 +85,8 @@ def _main() -> None:
             shutil.rmtree(git_repo)
 
     # Initialize the repo anew.
-    subprocess.run(["git", "init", "-b", "main"], check=True, capture_output=True)
+    subprocess.run(["git", "init"], check=True, capture_output=True)
+    subprocess.run(["git", "checkout", "-b", "main"], check=True, capture_output=True)
     subprocess.run(["git", "add", "."], check=True, capture_output=True)
 
     # Check if the remote already exists (if this script is being run twice).
