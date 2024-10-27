@@ -28,7 +28,7 @@ A package built from this starter code will have the following features:
 
 ### Common Next Steps
 6. **Make changes** to `pyproject.toml`, especially in the dependencies section.
-7. **Install your repository**: `pip install -e .".[develop]"` (recommended: use a virtualenv).
+7. **Install your repository**: `pip install -e ".[develop]"` (recommended: use a virtualenv).
 8. **Replace the starter files** (`README.md`, `LICENSE`, `config.json`, `apply_configuration.py`, `structs.py`, `utils.py` and the analogous files in `tests/`) with some of your own.
 
 ### Configure GitHub (Optional but Recommended)
