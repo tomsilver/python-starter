@@ -6,7 +6,7 @@ jobs:
   autoformat:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Run black to test code linting
         uses: psf/black@stable
         with:
@@ -20,54 +20,58 @@ jobs:
       matrix:
         python-version: ["3.10"]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
       with:
-        python-version: ${{ matrix.python-version }}
-        cache: 'pip'
-        cache-dependency-path: '**/pyproject.toml'
-    - name: Install dependencies
-      run: |
-        pip install -e ".[develop]"
+        enable-cache: true
+        cache-dependency-glob: "pyproject.toml"
+    - name: Set up Python ${{ matrix.python-version }}
+      run: uv python install ${{ matrix.python-version }}    
+    - name: Install the project
+      run: uv sync --all-extras --dev
     - name: Lint
       run: |
-        pytest . --pylint -m pylint --pylint-rcfile=.pylintrc
+        uv run pytest . --pylint -m pylint --pylint-rcfile=.pylintrc
   static-type-checking:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.10"]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
       with:
-        python-version: ${{ matrix.python-version }}
-        cache: 'pip'
-        cache-dependency-path: '**/pyproject.toml'
-    - name: Install dependencies
-      run: |
-        pip install -e ".[develop]"
+        enable-cache: true
+        cache-dependency-glob: "pyproject.toml"
+    - name: Set up Python ${{ matrix.python-version }}
+      run: uv python install ${{ matrix.python-version }}
+    - name: Install the project
+      run: uv sync --all-extras --dev
     - name: Mypy
       run: |
-        mypy .
+        uv run mypy .
   unit-tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.10"]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-        cache: 'pip'
-        cache-dependency-path: '**/pyproject.toml'
-    - name: Install dependencies
+    - name: Install LAPACK and BLAS
       run: |
-        pip install -e ".[develop]"
+        sudo apt-get update
+        sudo apt-get install -y liblapack-dev libblas-dev
+    - uses: actions/checkout@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        enable-cache: true
+        cache-dependency-glob: "pyproject.toml"
+    - name: Set up Python ${{ matrix.python-version }}
+      run: uv python install ${{ matrix.python-version }}    
+    - name: Install the project
+      run: uv sync --all-extras --dev
     - name: Pytest
       run: |
-        pytest tests/
+       uv run pytest tests/
