@@ -77,11 +77,15 @@ def _main() -> None:
 
     # Delete the existing git files if they are from the starter repo.
     git_repo = outer_dir / ".git"
+    using_ssh = True
     if git_repo.exists():
         git_config_file = git_repo / "config"
         with open(git_config_file, "r", encoding="utf-8") as fp:
             git_config_contents = fp.read()
         if "git@github.com:tomsilver/python-starter.git" in git_config_contents:
+            shutil.rmtree(git_repo)
+        elif "https://github.com/tomsilver/python-starter.git" in git_config_contents:
+            using_ssh = False
             shutil.rmtree(git_repo)
 
     # Initialize the repo anew.
@@ -102,13 +106,17 @@ def _main() -> None:
     # Remote doesn't exist, so add the URL.
     else:
         remote_command = "add"
+    if using_ssh:
+        github_url = f"git@github.com:{github_username}/{repo_name}.git"
+    else:
+        github_url = f"https://github.com/{github_username}/{repo_name}.git"
     subprocess.run(
         [
             "git",
             "remote",
             remote_command,
             "origin",
-            f"git@github.com:{github_username}/{repo_name}.git",
+            github_url,
         ],
         check=True,
         capture_output=True,
