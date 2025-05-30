@@ -83,6 +83,8 @@ def _main() -> None:
             git_config_contents = fp.read()
         if "git@github.com:tomsilver/python-starter.git" in git_config_contents:
             shutil.rmtree(git_repo)
+        elif "https://github.com/tomsilver/python-starter.git" in git_config_contents:
+            shutil.rmtree(git_repo)
 
     # Initialize the repo anew.
     subprocess.run(["git", "init"], check=True, capture_output=True)
@@ -102,13 +104,14 @@ def _main() -> None:
     # Remote doesn't exist, so add the URL.
     else:
         remote_command = "add"
+    github_url = f"git@github.com:{github_username}/{repo_name}.git"
     subprocess.run(
         [
             "git",
             "remote",
             remote_command,
             "origin",
-            f"git@github.com:{github_username}/{repo_name}.git",
+            github_url,
         ],
         check=True,
         capture_output=True,
