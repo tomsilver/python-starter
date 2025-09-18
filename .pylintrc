@@ -273,9 +273,6 @@ contextmanager-decorators=contextlib.contextmanager,tensorflow.python.util.tf_co
 # expressions are accepted.
 generated-members=torch.*,cv2.*
 
-# Tells whether missing members accessed in mixin class should be ignored. A
-# mixin class is detected if its name ends with "mixin" (case insensitive).
-ignore-mixin-members=yes
 
 # This flag controls whether pylint should warn about no-member and similar
 # checks whenever an opaque object is returned when inferring. The inference
