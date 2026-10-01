@@ -8,8 +8,8 @@ A basic template for building Python packages.
 A package built from this starter code will have the following features:
 - **Easy to install** with `pip install -e ".[develop]"` (see `pyproject.toml`)
 - **Continuous integration** with GitHub Actions (see `.github/workflows/ci.yml` and `run_ci_checks.sh`)
-- **Autoformatting** with black, isort, and docformatter (see `run_autoformat.sh`)
-- **Linting** with pytest-pylint (see `.pylintrc`)
+- **Autoformatting** with Black, Ruff import sorting, and docformatter (see `run_autoformat.sh`)
+- **Linting** with Ruff (see `pyproject.toml`)
 - **Type checking** with mypy (see `pyproject.toml`)
 - **Unit tests** with pytest (see `tests/`)
 

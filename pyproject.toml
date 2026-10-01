@@ -17,11 +17,9 @@ dependencies = [
 develop = [
     "black",
     "docformatter",
-    "isort",
     "mypy",
-    "pylint>=2.14.5",
-    "pytest-pylint>=0.18.0",
     "pytest>=7.2.2",
+    "ruff",
 ]
 
 [tool.setuptools.packages.find]
@@ -34,12 +32,12 @@ python_starter = ["py.typed"]
 line-length = 88
 target-version = ["py310"]
 
-[tool.isort]
-py_version = 310
-profile = "black"
-multi_line_output = 2
-skip_glob = ["venv/*", ".venv/*"]
-split_on_trailing_comma = true
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "PL"]
 
 [tool.docformatter]
 line-length = 88

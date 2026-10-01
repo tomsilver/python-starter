@@ -56,7 +56,7 @@ def _main() -> None:
     assert "developer" in config, "Missing developer name in config file"
     developer = config["developer"]
     github_username = config["github-username"]
-    assert not " " in github_username, "Malformed GitHub username"
+    assert " " not in github_username, "Malformed GitHub username"
     package_name = config["your-package-name"]
     assert (
         " " not in package_name
